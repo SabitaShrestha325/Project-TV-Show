@@ -1,3 +1,30 @@
 #root {
-  color: red;
+  color: #14213d;
+  background-color: #f3eec3;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+.episode-card {
+  display: block;
+  width: 300px;
+  padding: 1rem;
+  margin: 1rem auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #a7c957;
+}
+
+.episode-card img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.episode-card h3 {
+  margin-top: 0;
 }
