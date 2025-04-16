@@ -27,4 +27,7 @@
 
 .episode-card h3 {
   margin-top: 0;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 0.5rem;
 }
