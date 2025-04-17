@@ -1,11 +1,13 @@
-//You can edit ALL of the code here
+//
+// You can edit ALL of the code here
 
-//SS- adding 2 new functions for level 200
+// SS - Adding 2 new functions for level 200
 function setup() {
   const allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
   setupSearchBar(allEpisodes);
   setupEpisodeSelector(allEpisodes);
+  setupShowAllButton(allEpisodes); // SS - Added function to show all episodes
 }
 
 function makePageForEpisodes(episodeList) {
@@ -38,10 +40,13 @@ function makePageForEpisodes(episodeList) {
     rootElem.appendChild(container);
   });
 }
-// I added this function to set up the search bar functionality
+
+// SS - Added this function to set up the search bar functionality
 function setupSearchBar(allEpisodes) {
   const searchInput = document.getElementById("search-input");
   const episodeCount = document.getElementById("episode-count");
+  //SS - Adding show all episodes button
+  const showAllButton = document.getElementById("show-all-button");
 
   searchInput.addEventListener("input", function () {
     const searchTerm = searchInput.value.toLowerCase();
@@ -53,13 +58,17 @@ function setupSearchBar(allEpisodes) {
 
     makePageForEpisodes(filteredEpisodes);
     episodeCount.textContent = `Displaying ${filteredEpisodes.length} / ${allEpisodes.length} episodes`;
+    // SS - Show the "Show All Episodes" button if the search results are not all episodes
+    showAllButton.style.display =
+      filteredEpisodes.length < allEpisodes.length ? "block" : "none";
   });
 }
 
-// SS - I added this function to set up the episode selector functionality
+// SS - Added this function to set up the episode selector functionality
 function setupEpisodeSelector(allEpisodes) {
   const episodeSelector = document.getElementById("episode-selector");
-
+  //SS - Adding show all episodes button
+  const showAllButton = document.getElementById("show-all-button");
   // SS - Populate the selector with episode options
   allEpisodes.forEach(function (episode, index) {
     const option = document.createElement("option");
@@ -78,7 +87,19 @@ function setupEpisodeSelector(allEpisodes) {
     } else {
       const selectedEpisode = [allEpisodes[selectedIndex]];
       makePageForEpisodes(selectedEpisode);
+      // SS - Show the "Show All Episodes" button when an individual episode is selected
+      showAllButton.style.display = "block";
     }
+  });
+}
+
+// SS - Added this function to display all episodes when requested
+function setupShowAllButton(allEpisodes) {
+  const showAllButton = document.getElementById("show-all-button");
+
+  showAllButton.addEventListener("click", function () {
+    makePageForEpisodes(allEpisodes);
+    showAllButton.style.display = "none"; // Hide the "Show All Episodes" button after it's clicked
   });
 }
 

@@ -44,6 +44,7 @@
 
 /* Sam - added this to style the new search and select container */
 #search-bar {
+  background-color: #f3eec3;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -76,4 +77,26 @@
 #episode-count {
   font-size: 0.9rem;
   color: #333;
+}
+
+/* I fully updated this to visually match the page and avoid background only behind the text */
+#show-all-button {
+  background-color: #f3eec3; /* Match overall page background */
+  border: none;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1em;
+  font-family: inherit;
+  padding: 0.5rem 1rem;
+  margin: 1.5rem auto 0 auto; /* Center it with top margin */
+  display: block;
+  width: fit-content; /* Prevent full-width button */
+  border-radius: 0.5rem;
+  box-shadow: none;
+}
+
+/* Sam - I added this so the <header> blends with the background as well */
+header {
+  background-color: #f3eec3;
 }
