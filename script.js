@@ -3,11 +3,32 @@
 
 // SS - Adding 2 new functions for level 200
 function setup() {
-  const allEpisodes = getAllEpisodes();
-  makePageForEpisodes(allEpisodes);
-  setupSearchBar(allEpisodes);
-  setupEpisodeSelector(allEpisodes);
-  setupShowAllButton(allEpisodes); // SS - Added function to show all episodes
+  const rootElem = document.getElementById("root"); // get the root element where the episodes will display
+  rootElem.innerHTML = "<p>Loading episodes...</p>"; // display a loading message until the episodes are fetched
+
+  // Fetch the episodes from the TVMaze API
+  fetch("https://api.tvmaze.com/shows/82/episodes")
+    .then((response) => {
+      // If the fetch request was not successful, throw an error
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json(); // return the response in JSON format
+    })
+    .then((data) => {
+      // If the fetch request was successful, store the data in a variable allEpisodes
+      allEpisodes = data;
+      makePageForEpisodes(allEpisodes); // call the function to display all episodes
+      setupSearchBar(allEpisodes); //set up the search bar to filter episodes
+      setupEpisodeSelector(allEpisodes); //set up the episode selector to select episodes
+      setupShowAllButton(allEpisodes); //set up the button to show all episodes
+    })
+    // If there is an error fetching the episodes, display an error message
+    .catch((error) => {
+      rootElem.innerHTML =
+        "<p style='color:red;'>Error loading episodes. Please try again later.</p>";
+      console.error("Fetch error:", error); // log the error to the console
+    });
 }
 
 function makePageForEpisodes(episodeList) {
