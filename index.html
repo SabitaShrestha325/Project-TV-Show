@@ -9,10 +9,41 @@
   </head>
 
   <body>
+    <header>
+      <!-- Sam - I added this header to contain the search bar and episode selector -->
+      <form id="search-bar" role="search">
+        <label for="search-input">Search Episodes:</label>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search episodes..."
+          aria-label="Search episodes"
+        />
+        <label for="episode-selector">Select Episode:</label>
+        <select id="episode-selector" aria-label="Select episode">
+          <option value="">Select an episode</option>
+        </select>
+        <span id="episode-count" aria-live="polite"></span>
+      </form>
+      <!-- Show All Episodes Button -->
+      <button
+        id="show-all-button"
+        aria-label="Show all episodes"
+        style="display: none"
+      >
+        Show All Episodes
+      </button>
+    </header>
+
     <div id="root"></div>
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
+
+    <p id="footer">
+      Data provided by
+      <a href="https://tvmaze.com" target="_blank">TVmaze.com</a>
+    </p>
 
     <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>
