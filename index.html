@@ -10,28 +10,40 @@
 
   <body>
     <header>
-      <!-- Sam - I added this header to contain the search bar and episode selector -->
-      <form id="search-bar" role="search">
-        <label for="search-input">Search Episodes:</label>
-        <input
-          type="text"
-          id="search-input"
-          placeholder="Search episodes..."
-          aria-label="Search episodes"
-        />
-        <label for="episode-selector">Select Episode:</label>
-        <select id="episode-selector" aria-label="Select episode">
-          <option value="">Select an episode</option>
-        </select>
-        <span id="episode-count" aria-live="polite"></span>
-      </form>
-      <!-- Show All Episodes Button -->
+      <div id="count-wrapper">
+        <!-- adding a container for styling-->
+        <!-- Level 400 Sam - New dropdown to select a show -->
+        <form>
+          <label for="show-selector">Select Show:</label>
+          <select id="show-selector" aria-label="Select a show">
+            <option value="">Select a show</option>
+          </select>
+          <span id="show-count" aria-live="polite"></span>
+          <p id="dynamic-count-message" aria-live="polite"></p>
+        </form>
+        <!-- Sam - I added this header to contain the search bar and episode selector -->
+        <form id="search-bar" role="search">
+          <label for="search-input">Search Episodes:</label>
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search episodes..."
+            aria-label="Search episodes"
+          />
+          <label for="episode-selector">Select Episode:</label>
+          <select id="episode-selector" aria-label="Select episode">
+            <option value="">Select an episode</option>
+          </select>
+        </form>
+      </div>
+
+      <!-- Show All Shows Button -->
       <button
         id="show-all-button"
-        aria-label="Show all episodes"
+        aria-label="Show all Shows"
         style="display: none"
       >
-        Show All Episodes
+        Show All Shows
       </button>
     </header>
 
