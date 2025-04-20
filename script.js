@@ -136,16 +136,21 @@ function populateEpisodeSelector(episodes) {
 }
 
 // ========== Show Display ==========
-function renderAllShows() {
+function renderAllShows(shows = allShows) {
   const rootElem = document.getElementById("root");
   rootElem.innerHTML = "";
 
-  allShows.forEach((show) => {
+  shows.forEach((show) => {
     const card = document.createElement("div");
     card.className = "episode-card";
 
     const title = document.createElement("h3");
     title.textContent = show.name;
+    title.style.cursor = "pointer";
+    title.addEventListener("click", () => {
+      document.getElementById("show-selector").value = show.id;
+      onShowSelect({ target: { value: show.id } });
+    });
 
     const img = document.createElement("img");
     img.src = show.image?.medium || "";
@@ -154,19 +159,27 @@ function renderAllShows() {
     const summary = document.createElement("div");
     summary.innerHTML = show.summary || "";
 
+    const extraDetails = document.createElement("p");
+    extraDetails.innerHTML = `
+      <strong>Genres:</strong> ${show.genres.join(", ")}<br/>
+      <strong>Status:</strong> ${show.status}<br/>
+      <strong>Rating:</strong> ${show.rating?.average || "N/A"}<br/>
+      <strong>Runtime:</strong> ${show.runtime ? show.runtime + " min" : "N/A"}
+    `;
+
     const link = document.createElement("a");
     link.href = show.url;
     link.target = "_blank";
     link.textContent = "More Info";
 
-    card.append(title, img, summary, link);
+    card.append(title, img, summary, extraDetails, link);
     rootElem.appendChild(card);
   });
 
   document.getElementById("show-count").textContent = "";
   document.getElementById(
     "dynamic-count-message"
-  ).textContent = `Showing ${allShows.length} shows`;
+  ).textContent = `Showing ${shows.length} shows`;
 
   document.getElementById(
     "episode-selector"
@@ -188,6 +201,18 @@ function setup() {
   document
     .getElementById("show-all-button")
     .addEventListener("click", onShowAllClick);
+  document
+    .getElementById("show-search-input")
+    .addEventListener("input", (e) => {
+      const term = e.target.value.toLowerCase();
+      const filtered = allShows.filter(
+        (show) =>
+          show.name.toLowerCase().includes(term) ||
+          show.genres.join(" ").toLowerCase().includes(term) ||
+          (show.summary || "").toLowerCase().includes(term)
+      );
+      renderAllShows(filtered);
+    });
 
   fetch("https://api.tvmaze.com/shows")
     .then((response) => response.json())
@@ -215,5 +240,4 @@ function populateShowSelector(shows) {
   });
 }
 
-// ========== Run Setup ==========
 window.addEventListener("load", setup);
