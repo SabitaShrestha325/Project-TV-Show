@@ -13,7 +13,17 @@
       <div id="count-wrapper">
         <!-- adding a container for styling-->
         <!-- Level 400 Sam - New dropdown to select a show -->
-        <form>
+        <!--  Show Search  -->
+        <form id="show-search-form" role="search">
+          <label for="show-search-input">Search Shows:</label>
+          <input
+            type="text"
+            id="show-search-input"
+            placeholder="Search shows..."
+            aria-label="Search shows"
+          />
+          <!-- Show Selector -->
+
           <label for="show-selector">Select Show:</label>
           <select id="show-selector" aria-label="Select a show">
             <option value="">Select a show</option>
@@ -21,6 +31,7 @@
           <span id="show-count" aria-live="polite"></span>
           <p id="dynamic-count-message" aria-live="polite"></p>
         </form>
+
         <!-- Sam - I added this header to contain the search bar and episode selector -->
         <form id="search-bar" role="search">
           <label for="search-input">Search Episodes:</label>
