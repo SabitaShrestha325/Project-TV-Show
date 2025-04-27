@@ -144,7 +144,7 @@ function renderAllShows(shows = allShows) {
     const card = document.createElement("div");
     card.className = "episode-card";
 
-    const title = document.createElement("h3");
+    const title = document.createElement("h2");
     title.textContent = show.name;
     title.style.cursor = "pointer";
     title.addEventListener("click", () => {

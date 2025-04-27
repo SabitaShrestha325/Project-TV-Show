@@ -17,10 +17,24 @@ body {
   gap: 1rem;
   padding: 1rem;
 }
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: #000000;
+  border-bottom: 1px solid #444;
+  text-shadow: 4px 4px 12px #b23a48;
+}
+h1:hover {
+  text-shadow: 4px 4px 12px #ffcc00;
+}
+
 header,
 #search-bar,
 #footer {
-  background-color: #000000;
+  background: ;
 }
 .episode-card {
   display: block;
@@ -47,7 +61,7 @@ header,
   margin-bottom: 0.5rem;
 }
 
-.episode-card h3 {
+.episode-card h2 {
   margin-top: 0;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -58,7 +72,7 @@ header,
 #show-search-form {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 1rem;
   width: 100%;
@@ -115,10 +129,6 @@ select {
   margin-top: auto;
   background-color: #1b263b;
   border-top: 1px solid #444;
-}
-#footer a {
-  color: #ccc;
-  text-decoration: none;
 }
 
 #footer a,
